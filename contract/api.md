@@ -18,6 +18,9 @@ All answers are JSON. Times are ISO 8601, UTC.
 
 - Every incident production has, newest first, with exactly these fields.
 - Read from production's incident feed (`FEED_URL`).
+- Optional `?status=open` or `?status=resolved` returns only incidents with that status,
+  preserving their fields and newest-first order. Without `status`, return all incidents.
+  Status matching is exact; a value with no matches returns `{ "incidents": [] }`.
 
 ## `GET /incidents/{id}`
 
