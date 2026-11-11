@@ -19,6 +19,12 @@ All answers are JSON. Times are ISO 8601, UTC.
 - Every incident production has, newest first, with exactly these fields.
 - Read from production's incident feed (`FEED_URL`).
 
+## `GET /incidents/{id}`
+
+Returns `{ "incident": { … } }` for the incident with that id in the production feed,
+with exactly the same fields as `GET /incidents`. Reads need no token.
+An id absent from the feed returns `404` with `{ "error": "not found" }`.
+
 ## Upstream: the production incident feed
 
 This API reads `FEED_URL` (`GET`, no token). The feed also takes admin writes for ops:
