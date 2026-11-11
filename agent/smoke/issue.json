@@ -1,0 +1,11 @@
+{
+  "n": 900,
+  "title": "Smoke test: let the support console fetch one incident by id",
+  "body": "Support wants GET /incidents/{id} so the console can open one incident without loading the whole list. Same fields as the list. Unknown id should be 404.",
+  "openedAt": "2026-11-11T20:00:00.000Z",
+  "labels": [],
+  "closed": false,
+  "thread": [
+    { "by": "agent", "at": "2026-11-11T20:00:30.000Z", "kind": "comment", "body": "#900 picked up by the agent." }
+  ]
+}

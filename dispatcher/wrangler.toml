@@ -1,0 +1,18 @@
+name = "megadev-s03e03-dispatcher"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = false
+
+[triggers]
+crons = ["* * * * *"]
+
+[vars]
+GH_REPO = "konczak/megadev-s03e03-sched-prod-api"
+
+# Created with `wrangler kv namespace create STATE`.
+[[kv_namespaces]]
+binding = "STATE"
+id = "8404d1aa40354fd089e319421593c4e2"
+
+# Secrets (wrangler secret put): TRACKER_URL, TRACKER_TOKEN, GH_DISPATCH_TOKEN, NTFY_TOPIC, NTFY_TOKEN,
+# ROUND_PAGE (the owner's round page, for the ntfy click link).
