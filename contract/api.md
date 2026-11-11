@@ -21,6 +21,10 @@ All answers are JSON. Times are ISO 8601, UTC.
 - Optional `?status=open` or `?status=resolved` returns only incidents with that status,
   preserving their fields and newest-first order. Without `status`, return all incidents.
   Status matching is exact; a value with no matches returns `{ "incidents": [] }`.
+- Optional `?since=<ISO time>` returns only incidents whose `openedAt` is strictly after
+  that instant, preserving their fields and newest-first order. Without `since`, no time
+  filter is applied. It can be combined with `status`; both filters must match.
+  A time that cannot be parsed returns `{ "incidents": [] }`.
 
 ## `GET /incidents/{id}`
 
