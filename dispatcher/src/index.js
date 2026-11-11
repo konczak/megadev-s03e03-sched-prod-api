@@ -79,7 +79,7 @@ async function tick(env) {
   // 3. Retry the last job if its run failed (at most 3 tries).
   if (last && !last.done) {
     const name = `issue ${last.issue} ${last.reason}`;
-    const run = runs.find((r) => r.name === name && Date.parse(r.created_at) >= last.at - 10_000);
+    const run = runs.find((r) => (r.display_title ?? r.name) === name && Date.parse(r.created_at) >= last.at - 10_000);
     if (!run && now - last.at < 5 * 60_000) return console.log('waiting for the run to show');
     if (!run || run.conclusion !== 'success') {
       if (last.attempts < 3) return dispatch(env, { ...last, at: now, attempts: last.attempts + 1 });

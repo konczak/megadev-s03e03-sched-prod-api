@@ -51,6 +51,17 @@ jobs:
         if: inputs.smoke
         run: node agent/smoke/setup.mjs
 
+      - name: Smoke connection checks (Cloudflare token, ntfy from the runner)
+        if: inputs.smoke
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
+        run: |
+          npx wrangler deployments list --env production | tail -n 5
+          node -e "import('./agent/lib.mjs').then(m => m.ping('S03E03 runner test', 'Test from the GitHub runner.'))"
+
       - name: Fetch the issue and its context
         if: ${{ !inputs.smoke }}
         env:
